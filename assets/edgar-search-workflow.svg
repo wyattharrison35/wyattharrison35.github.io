@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="auto" style="background:#0b1329; border-radius:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <!-- Header Banner -->
+  <rect x="0" y="0" width="800" height="60" fill="#1e293b" />
+  <text x="30" y="38" fill="#94a3b8" font-size="14" font-weight="600" letter-spacing="1">EDGAR COMPANY SEARCH &amp; CIK RESOLUTION</text>
+  <rect x="520" y="15" width="250" height="30" rx="6" fill="#059669" />
+  <text x="645" y="35" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">https://edgarscout.com/</text>
+
+  <!-- Query Box -->
+  <rect x="60" y="110" width="680" height="70" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2" />
+  <circle cx="100" cy="145" r="18" fill="#38bdf8" />
+  <text x="100" y="151" fill="#0f172a" font-size="16" font-weight="900" text-anchor="middle">Q</text>
+  <text x="135" y="140" fill="#f8fafc" font-size="15" font-weight="700">Filer Query: Company Legal Name, Stock Ticker, or CIK Code</text>
+  <text x="135" y="162" fill="#94a3b8" font-size="12">Examples: "Apple Inc.", "AAPL", or CIK "0000320193"</text>
+
+  <!-- Pipeline Split Cards -->
+  <rect x="60" y="210" width="210" height="150" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+  <text x="165" y="240" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">1. CIK Mapping</text>
+  <text x="75" y="275" fill="#94a3b8" font-size="12">• 10-digit unique key</text>
+  <text x="75" y="300" fill="#94a3b8" font-size="12">• Never changes with name</text>
+  <text x="75" y="325" fill="#94a3b8" font-size="12">• Resolves parent/subsidiary</text>
+
+  <rect x="295" y="210" width="210" height="150" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+  <text x="400" y="240" fill="#10b981" font-size="15" font-weight="700" text-anchor="middle">2. SIC Code Group</text>
+  <text x="310" y="275" fill="#94a3b8" font-size="12">• Standard Industrial Code</text>
+  <text x="310" y="300" fill="#94a3b8" font-size="12">• 4-digit industry sector</text>
+  <text x="310" y="325" fill="#94a3b8" font-size="12">• Benchmarks competitors</text>
+
+  <rect x="530" y="210" width="210" height="150" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+  <text x="635" y="240" fill="#f59e0b" font-size="15" font-weight="700" text-anchor="middle">3. Filing Feed</text>
+  <text x="545" y="275" fill="#94a3b8" font-size="12">• Real-time EDGAR ingest</text>
+  <text x="545" y="300" fill="#94a3b8" font-size="12">• Historical 10-K / 10-Q</text>
+  <text x="545" y="325" fill="#94a3b8" font-size="12">• Raw exhibits &amp; schedules</text>
+
+  <!-- Footer Watermark Bar -->
+  <rect x="60" y="380" width="680" height="40" rx="8" fill="#1e293b" />
+  <text x="400" y="405" fill="#10b981" font-size="13" font-weight="600" text-anchor="middle">Company Lookup &amp; Analysis Architecture • https://edgarscout.com/</text>
+</svg>
