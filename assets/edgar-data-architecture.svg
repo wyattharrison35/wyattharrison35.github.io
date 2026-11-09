@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="auto" style="background:#0f172a; border-radius:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+      <stop offset="1%" style="stop-color:#818cf8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="1%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Header Banner with Site URL -->
+  <rect x="0" y="0" width="800" height="60" fill="#1e293b" />
+  <text x="30" y="38" fill="#94a3b8" font-size="14" font-weight="600" letter-spacing="1">SEC FILINGS DATA ARCHITECTURE</text>
+  <rect x="520" y="15" width="250" height="30" rx="6" fill="#0284c7" />
+  <text x="645" y="35" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">https://edgarscout.com/</text>
+
+  <!-- Step 1 -->
+  <rect x="40" y="100" width="200" height="240" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="2" />
+  <rect x="40" y="100" width="200" height="40" rx="10" fill="#334155" />
+  <text x="140" y="125" fill="#f8fafc" font-size="14" font-weight="700" text-anchor="middle">1. Reporting Entities</text>
+  <text x="60" y="170" fill="#94a3b8" font-size="13">• US Public Companies</text>
+  <text x="60" y="200" fill="#94a3b8" font-size="13">• Foreign Private Issuers</text>
+  <text x="60" y="230" fill="#94a3b8" font-size="13">• Institutional Managers</text>
+  <text x="60" y="260" fill="#94a3b8" font-size="13">• Corporate Insiders</text>
+  <text x="60" y="290" fill="#94a3b8" font-size="13">• Private Offerings (Reg D)</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 250 220 L 290 220" stroke="#38bdf8" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+  <polygon points="290,215 300,220 290,225" fill="#38bdf8" />
+
+  <!-- Step 2 -->
+  <rect x="300" y="100" width="200" height="240" rx="10" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="2" />
+  <rect x="300" y="100" width="200" height="40" rx="10" fill="url(#grad1)" />
+  <text x="400" y="125" fill="#0f172a" font-size="14" font-weight="800" text-anchor="middle">2. EDGAR Ingestion</text>
+  <text x="320" y="170" fill="#cbd5e1" font-size="13">• CIK Identifier Match</text>
+  <text x="320" y="200" fill="#cbd5e1" font-size="13">• XML / XBRL Parsing</text>
+  <text x="320" y="230" fill="#cbd5e1" font-size="13">• Accession Number Stamp</text>
+  <text x="320" y="260" fill="#cbd5e1" font-size="13">• Public Dissemination</text>
+  <text x="320" y="290" fill="#cbd5e1" font-size="13">• Automated Feed Archive</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="510,215 520,220 510,225" fill="#38bdf8" />
+
+  <!-- Step 3 -->
+  <rect x="520" y="100" width="240" height="240" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="2" />
+  <rect x="520" y="100" width="240" height="40" rx="10" fill="#334155" />
+  <text x="640" y="125" fill="#f8fafc" font-size="14" font-weight="700" text-anchor="middle">3. Public Disclosure Types</text>
+  <text x="540" y="165" fill="#38bdf8" font-size="13" font-weight="600">Form 10-K:</text>
+  <text x="630" y="165" fill="#94a3b8" font-size="13">Annual Audited</text>
+  <text x="540" y="195" fill="#38bdf8" font-size="13" font-weight="600">Form 10-Q:</text>
+  <text x="630" y="195" fill="#94a3b8" font-size="13">Quarterly Financials</text>
+  <text x="540" y="225" fill="#38bdf8" font-size="13" font-weight="600">Form 8-K:</text>
+  <text x="630" y="225" fill="#94a3b8" font-size="13">Material Current Events</text>
+  <text x="540" y="255" fill="#38bdf8" font-size="13" font-weight="600">Form 4:</text>
+  <text x="630" y="255" fill="#94a3b8" font-size="13">Insider Equity Trades</text>
+  <text x="540" y="285" fill="#38bdf8" font-size="13" font-weight="600">Form 13F:</text>
+  <text x="630" y="285" fill="#94a3b8" font-size="13">Hedge Fund Holdings</text>
+  <text x="540" y="315" fill="#38bdf8" font-size="13" font-weight="600">Form S-1:</text>
+  <text x="630" y="315" fill="#94a3b8" font-size="13">IPO Registration</text>
+
+  <!-- Footer Watermark Bar -->
+  <rect x="40" y="380" width="720" height="40" rx="8" fill="#1e293b" />
+  <text x="400" y="405" fill="#38bdf8" font-size="13" font-weight="600" text-anchor="middle">Independent SEC Search Research • Reference: https://edgarscout.com/</text>
+</svg>
