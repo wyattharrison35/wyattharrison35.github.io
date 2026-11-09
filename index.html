@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEC EDGAR Filings Guide</title>
+  <meta name="description" content="A comprehensive research guide to the SEC EDGAR system, company search, CIK lookups, 10-K, 10-Q, 8-K, Form 4 insider trades, and 13F institutional disclosures.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #7dd3fc;
+      --highlight: #0284c7;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.8;
+      font-size: 17px;
+      padding: 0 16px;
+    }
+    header {
+      max-width: 920px;
+      margin: 40px auto 30px auto;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    h1 {
+      font-size: 2.35rem;
+      line-height: 1.25;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 16px;
+    }
+    .meta {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    main {
+      max-width: 920px;
+      margin: 0 auto 60px auto;
+    }
+    h2 {
+      font-size: 1.75rem;
+      color: #f8fafc;
+      margin-top: 52px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-top: 32px;
+      margin-bottom: 14px;
+    }
+    h4 {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+    p {
+      margin-bottom: 22px;
+    }
+    ul, ol {
+      margin-bottom: 26px;
+      padding-left: 30px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .callout {
+      background: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      padding: 22px 26px;
+      border-radius: 0 8px 8px 0;
+      margin: 30px 0;
+    }
+    .callout-title {
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .disclaimer-box {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 36px 0;
+    }
+    .graphic-container {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .graphic-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+    .graphic-caption {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+    .resource-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+      margin: 38px 0;
+    }
+    .resource-card h3 {
+      margin-top: 0;
+      color: #38bdf8;
+    }
+    a.primary-anchor {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color 0.2s ease;
+      word-break: break-all;
+    }
+    a.primary-anchor:hover {
+      color: var(--accent-hover);
+    }
+    footer {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 36px 0 60px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13.5px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+    th {
+      background: #334155;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    code {
+      background: rgba(51, 65, 85, 0.6);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">SEC FILINGS &amp; REGULATORY INTELLIGENCE MANUAL</div>
+    <h1>Master Guide to SEC EDGAR Public Filings &amp; Corporate Intelligence</h1>
+    <div class="meta">Published by Capital Markets Research &amp; Regulatory Intelligence • 3,000+ Word Guide</div>
+  </header>
+
+  <main>
+    <p>Every business day, public corporations, registered investment managers, corporate executives, and private placement issuers submit thousands of legal disclosure documents to the United States federal government. These public records contain detailed balance sheets, certified auditor opinions, executive remuneration agreements, legal contingency reports, material operational events, and granular insider equity transactions.</p>
+    
+    <p>At the center of this financial transparency ecosystem sits EDGAR, the Electronic Data Gathering, Analysis, and Retrieval system administered by the U.S. Securities and Exchange Commission (SEC). While the EDGAR repository is entirely open to the global public, navigating its massive volume of structured XML feeds, unformatted HTML exhibits, and specialized regulatory filings requires a structured methodology.</p>
+
+    <div class="disclaimer-box">
+      <strong>Important Research Notice:</strong> This article is published solely for educational, academic, and informational research purposes and does not constitute investment, financial, legal, or tax advice. The publishers and authors are entirely independent researchers and are not affiliated with, endorsed by, or sponsored by the U.S. Securities and Exchange Commission (SEC). All users should independently verify primary regulatory disclosures directly on the official federal portal at sec.gov.
+    </div>
+
+    <h2>1. The Evolution and Architecture of SEC EDGAR</h2>
+    <p>Established as an experimental pilot program in 1984 and mandated for all domestic public corporations by May 1996, the EDGAR system transitioned federal corporate oversight from physical paper filing rooms into an automated digital data pipeline. Prior to EDGAR, individual investors, financial journalists, and equity analysts had to physically visit SEC public reference rooms in Washington D.C., New York, or Chicago to read microfiche copies of corporate quarterly statements.</p>
+
+    <p>Today, EDGAR operates as a modern electronic ingestion engine that handles hundreds of thousands of corporate filings annually. When a publicly listed company, mutual fund, registered asset manager, or executive insider submits a disclosure, the filing passes through automated validation checks, receives a unique accession number, and is published immediately to public disseminators, institutional feeds, and archival indexes.</p>
+
+    <div class="graphic-container">
+      <img src="assets/edgar-data-architecture.svg" alt="SEC Filings Data Architecture Diagram">
+      <div class="graphic-caption">Figure 1: The SEC EDGAR disclosure pipeline from reporting entity submission to public dissemination.</div>
+    </div>
+
+    <p>The electronic ingestion process is governed by strict technical filing rules documented in the SEC EDGAR Filer Manual. Disclosures are standardized into specific machine-readable specifications, including Inline eXtensible Business Reporting Language (iXBRL), raw XML formats for ownership transactions, and structured SGML submission headers. These structured tags allow computerized parsers to extract balance sheet items, liabilities, and executive share transactions without manual transcription errors.</p>
+
+    <h2>2. Entity Identification: Understanding CIK, Tickers, and SIC Codes</h2>
+    <p>One of the most frequent stumbling blocks for researchers beginning their exploration of public filings is entity identification. While equity market participants frequently identify firms by their stock ticker symbols (e.g., MSFT, AAPL, AMZN), the federal regulatory architecture relies upon permanent numerical classifications that prevent ambiguity caused by ticker reassignments, stock exchanges changes, corporate rebrandings, and mergers.</p>
+
+    <h3>The Central Index Key (CIK)</h3>
+    <p>The Central Index Key (CIK) is a unique ten-digit number assigned by the Commission to each individual or corporate entity that submits filings. A company retains its assigned CIK number perpetually, even if it changes its corporate legal name, moves its state of incorporation, switches stock exchanges, or undergoes bankruptcy restructuring.</p>
+    <p>Furthermore, corporate insiders (directors, executive officers, and beneficial owners holding greater than ten percent of a registered class of equity) also receive their own individual CIK numbers. This allows analysts to track an individual executive across multiple corporate boards and venture holdings over decades of corporate governance history.</p>
+
+    <h3>Standard Industrial Classification (SIC)</h3>
+    <p>Every commercial reporting company in EDGAR is categorized under a four-digit Standard Industrial Classification (SIC) code. Established by the federal government to track economic activity across industrial sectors, the SIC system groups businesses by their primary line of commercial operations. For instance, pharmaceutical preparations are clustered under SIC 2834, computer programming services under SIC 7371, and state commercial banks under SIC 6022. Analysts routinely utilize SIC classification to aggregate industry peer groups and compare normalized margin structures across competitive landscapes.</p>
+
+    <div class="graphic-container">
+      <img src="assets/edgar-search-workflow.svg" alt="EDGAR Company Search and CIK Resolution Workflow">
+      <div class="graphic-caption">Figure 2: Workflow for resolving company names, stock tickers, and SIC groupings to unique federal CIK records.</div>
+    </div>
+
+    <h2>3. The Core Periodic Filings: Form 10-K and Form 10-Q</h2>
+    <p>Public corporations whose securities trade on American national exchanges or exceed statutory asset and shareholder thresholds are subject to the reporting obligations of the Securities Exchange Act of 1934. The core of these recurring commitments is centered on annual and quarterly disclosure reports.</p>
+
+    <h3>Form 10-K: The Annual Definitive Report</h3>
+    <p>Form 10-K represents the comprehensive overview of a public company’s business, operations, legal risks, executive compensation, and audited financial results for its completed fiscal year. Unlike glossy marketing annual reports mailed to retail shareholders, the Form 10-K is a legal disclosure document prepared under penalty of federal securities law. A complete 10-K is structured into four distinct parts and fifteen numbered items:</p>
+    <ul>
+      <li><strong>Item 1 — Business:</strong> A detailed narrative breakdown of operational segments, commercial products, regulatory dependencies, intellectual property assets, and customer concentration risks.</li>
+      <li><strong>Item 1A — Risk Factors:</strong> Frank, itemized disclosures of all material risks that could impact the firm’s competitive position, balance sheet solvency, supply chain resilience, or share price.</li>
+      <li><strong>Item 7 — Management’s Discussion and Analysis (MD&amp;A):</strong> Executive leadership’s perspective on operating results, key liquidity metrics, capital allocation decisions, and macro economic headwinds.</li>
+      <li><strong>Item 8 — Financial Statements and Supplementary Data:</strong> Certified, independent auditor-verified balance sheets, statements of comprehensive income, cash flow statements, and comprehensive footnotes explaining accounting methods and contingent liabilities.</li>
+    </ul>
+
+    <h3>Form 10-Q: The Quarterly Progress Check</h3>
+    <p>Submitted for each of the first three fiscal quarters of a company’s operational year, Form 10-Q provides unaudited, interim financial statements and operational updates. While less extensive than the annual 10-K, Form 10-Q reveals crucial quarterly fluctuations in working capital, short-term debt obligations, revenue recognition seasonality, and newly emerged legal proceedings.</p>
+
+    <h2>4. Real-Time Disclosures: Understanding Form 8-K</h2>
+    <p>While periodic reports arrive on predictable quarterly timetables, corporate developments frequently occur that cannot wait for the close of a fiscal quarter. For these unexpected or material occurrences, public issuers are legally obligated to submit Form 8-K (the Current Report).</p>
+    
+    <p>Under federal regulations, a company must file Form 8-K within four business days following the occurrence of a qualifying trigger event. Form 8-K disclosures are categorized under standardized numbered items, enabling automated search tools and researchers to immediately filter incoming alerts:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item Code</th>
+          <th>Disclosure Category</th>
+          <th>Significance for Researchers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Item 1.01</td>
+          <td>Material Definitive Agreements</td>
+          <td>Unveils major supply contracts, joint ventures, merger agreements, or credit lines.</td>
+        </tr>
+        <tr>
+          <td>Item 1.05</td>
+          <td>Cybersecurity Incidents</td>
+          <td>Mandatory report disclosing material digital breaches, ransomware, or unauthorized system access.</td>
+        </tr>
+        <tr>
+          <td>Item 2.02</td>
+          <td>Results of Operations and Financial Condition</td>
+          <td>Typically contains the quarterly earnings press release and non-GAAP reconciliation slides.</td>
+        </tr>
+        <tr>
+          <td>Item 5.02</td>
+          <td>Departure of Directors or Principal Officers</td>
+          <td>Immediate notification when a CEO, CFO, or key executive resigns, departs, or is hired.</td>
+        </tr>
+        <tr>
+          <td>Item 7.01</td>
+          <td>Regulation FD Disclosures</td>
+          <td>Materials shared with institutional investors or at investor conferences to maintain fair disclosure.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="graphic-container">
+      <img src="assets/sec-forms-comparison.svg" alt="Major SEC Filings Comparison and Timelines">
+      <div class="graphic-caption">Figure 3: Statutory filing deadlines, audit standards, and disclosure functions across primary SEC forms.</div>
+    </div>
+
+    <h2>5. Executive and Insider Equity Monitoring: Form 4</h2>
+    <p>Section 16 of the Securities Exchange Act of 1934 requires registered corporate insiders to publicly disclose their transactions in the company’s equity securities. Insiders include corporate directors, named executive officers (such as the Chief Executive Officer, Chief Financial Officer, and Chief Operating Officer), and beneficial holders owning greater than ten percent of any equity class.</p>
+
+    <p>Whenever an insider buys, sells, exercises stock options, or transfers company shares, they must submit Form 4 within two business days. Every row in the transaction table of Form 4 contains critical parameters:</p>
+    <ul>
+      <li><strong>Transaction Codes:</strong> Standardized letters indicating the nature of the trade. Code "P" represents an open-market purchase with personal capital; Code "S" indicates an open-market sale; Code "M" signifies an option exercise; and Code "G" denotes a bona fide gift.</li>
+      <li><strong>Ownership Type:</strong> Indicates whether the securities are held directly (Code "D") by the executive or indirectly (Code "I") through a family trust, limited liability entity, or partnership.</li>
+      <li><strong>Price and Quantity:</strong> The precise volume of shares exchanged and the weighted average price executed.</li>
+    </ul>
+
+    <h2>6. Tracking Institutional Capital: Form 13F</h2>
+    <p>Under Section 13(f) of the federal securities statutes, institutional investment managers exercising investment discretion over $100 million or more in Section 13(f) qualifying securities (principally exchange-traded equity shares, American Depositary Receipts, and certain convertible bonds) must submit a quarterly portfolio inventory on Form 13F.</p>
+
+    <p>Form 13F must be filed within 45 days after the end of each calendar quarter. Through Form 13F tables, researchers can inspect the long equity positions of prominent hedge funds, mutual fund complexes, pension systems, and family investment offices. However, researchers must be conscious of several structural limitations inherent to Form 13F data:</p>
+    <ol>
+      <li><strong>No Short Position Disclosures:</strong> Form 13F strictly mandates long equity holdings. Short positions, swap contracts, and over-the-counter derivatives are excluded from the main table.</li>
+      <li><strong>A 45-Day Information Lag:</strong> Because managers are permitted 45 days following quarter-end to submit their filings, high-turnover funds may have adjusted or completely exited reported positions by the time the disclosure enters the public domain.</li>
+      <li><strong>Exclusion of Foreign-Listed Securities:</strong> Equity shares traded purely on overseas markets without an American ticker or ADR listing are not captured in the 13(f) securities list.</li>
+    </ol>
+
+    <h2>7. Private Placements and Capital Formation: Form D</h2>
+    <p>Not all companies raising capital are listed on public stock exchanges. Under Regulation D of the Securities Act of 1933, private enterprises, emerging startups, real estate syndicates, and private equity funds can raise funds from accredited investors without completing a full public registration process.</p>
+    
+    <p>When an issuer conducts a private offering under Rule 506(b) or Rule 506(c), it must submit Form D to the SEC within 15 calendar days following the first sale of securities. Form D filings provide invaluable intelligence regarding venture capital rounds, private equity commitments, aggregate offering amounts, broker commissions, and targeted industries.</p>
+
+    <h2>8. Filing Deadlines and Filer Categorization</h2>
+    <p>Statutory filing deadlines for recurring periodic reports are not uniform across all corporations. Instead, the Commission divides public filers into three distinct categories based on their aggregate public float (the aggregate worldwide market value of voting and non-voting common equity held by non-affiliates):</p>
+    <ul>
+      <li><strong>Large Accelerated Filers (Public Float of $700 Million or More):</strong> Must submit Form 10-K within 60 days following fiscal year-end, and Form 10-Q within 40 days following the end of each fiscal quarter.</li>
+      <li><strong>Accelerated Filers (Public Float Between $75 Million and $700 Million):</strong> Subject to a 75-day deadline for Form 10-K and a 40-day deadline for Form 10-Q.</li>
+      <li><strong>Non-Accelerated Filers (Public Float Below $75 Million):</strong> Allowed 90 days to submit Form 10-K and 45 days to file Form 10-Q, providing smaller enterprises additional runway to complete their financial reviews.</li>
+    </ul>
+
+    <h2>9. Foreign Issuers, IPOs, and Proxy Governance</h2>
+    <p>Beyond standard domestic periodic disclosures, corporate researchers routinely encounter specialized document families that illuminate international corporations, initial public offerings, and shareholder governance voting.</p>
+
+    <h3>Form S-1: Initial Public Offerings (IPOs)</h3>
+    <p>When a private enterprise decides to offer its shares to the public on an American stock exchange, it must submit a registration statement under the Securities Act of 1933, typically on Form S-1. The S-1 contains the initial prospectus detailing the company’s capitalization structure, the planned use of offering proceeds, historical audited financial statements, underwriting syndicates, and comprehensive founder equity breakdowns. Subsequent revisions are published as Form S-1/A amendments.</p>
+
+    <h3>Foreign Private Issuers: Form 20-F and Form 6-K</h3>
+    <p>Non-U.S. corporations that list securities on American exchanges (such as companies headquartered in the United Kingdom, Japan, or Germany) are exempt from domestic Form 10-K and 10-Q filing mandates. Instead, they file an annual report on Form 20-F and report current material occurrences on Form 6-K. Form 20-F offers crucial reconciliations between international financial standards (such as IFRS) and U.S. GAAP.</p>
+
+    <h3>DEF 14A: The Definitive Proxy Statement</h3>
+    <p>Published in advance of an annual shareholder meeting, the definitive proxy statement (DEF 14A) is one of the richest sources of corporate governance data. It details director voting items, executive compensation tables, annual bonuses, equity grants, potential severance packages (often referred to as golden parachutes), and related-party financial transactions involving corporate leadership.</p>
+
+    <h2>10. Accessing EDGAR via Developer APIs &amp; Fair Access Rules</h2>
+    <p>For data engineers, quantitative analysts, and financial technology developers, manual browsing through browser search interfaces is often insufficient. The SEC provides public RESTful JSON APIs and bulk data endpoints that expose company submission histories, facts, and XBRL company concepts.</p>
+
+    <p>However, when interfacing programmatically with federal filing endpoints, automated scrapers and API scripts must adhere strictly to the SEC Fair Access Policy. Key rules include:</p>
+    <ul>
+      <li><strong>Rate Limiting:</strong> Developers must limit their automated request volume to no more than 10 requests per second. Excessive request rates trigger automated IP blocks.</li>
+      <li><strong>User-Agent Header Standards:</strong> Every HTTP request sent to federal filing servers must include a customized, descriptive User-Agent header following the standardized format: <code>Sample Company Name AdminContact@domain.com</code>. Requests utilizing generic library headers (e.g., Python Requests, cURL) are automatically rejected.</li>
+      <li><strong>Off-Peak Scheduling:</strong> Bulk ingestion pipelines and large archival downloads should ideally be scheduled during off-peak hours (between 9:00 PM and 6:00 AM Eastern Time) to preserve server capacity during peak regulatory filing windows.</li>
+    </ul>
+
+    <h2>11. Modern Tools &amp; Methods for Searching SEC EDGAR</h2>
+    <p>Executing effective regulatory research across the millions of documents housed in EDGAR requires knowing which search parameters to deploy. While querying exact company names is straightforward, corporate researchers often rely on full-text Boolean operators, accession number lookups, and specialized indexing portals.</p>
+
+    <div class="resource-card">
+      <h3>Centralized Entity &amp; Filing Lookup Hub</h3>
+      <p>For independent researchers, financial analysts, and corporate intelligence professionals looking to streamline entity lookups, CIK matching, and SEC form exploration without navigating raw federal interfaces, specialized discovery tools provide immediate clarity. You can explore independent search utilities and CIK resolution indexes at <a href="https://edgarscout.com/" class="primary-anchor">https://edgarscout.com/</a> to locate company filings, filter institutional ownership tables, and inspect standardized form guides.</p>
+    </div>
+
+    <p>When conducting in-depth document searches across filing archives, consider the following technical research principles:</p>
+    <ul>
+      <li><strong>Use Quotation Marks for Exact Legal Entities:</strong> Searching for <code>"Alphabet Inc."</code> prevents results from matching generic mentions of the alphabet in educational software disclosures.</li>
+      <li><strong>Inspect Exhibit 21 (Subsidiaries):</strong> In Form 10-K, Item 15 requires an index of exhibits. Exhibit 21 explicitly enumerates all operating subsidiaries and legal entities owned by the parent corporation, revealing offshore branches and operating holding companies.</li>
+      <li><strong>Scrutinize Exhibit 10 (Material Contracts):</strong> This exhibit contains unredacted or confidential-treatment-redacted versions of executive employment agreements, credit facility contracts, and major customer licensing terms.</li>
+      <li><strong>Cross-Check the Auditor’s Opinion:</strong> Within Item 8 of Form 10-K, verify whether the independent accounting firm issued an unqualified ("clean") opinion or included explanatory language regarding critical audit matters (CAMs) or doubts about the entity's ability to continue as a going concern.</li>
+    </ul>
+
+    <h2>12. Summary Checklist for SEC Regulatory Research</h2>
+    <p>To summarize an effective corporate due diligence workflow, analysts should follow this structured step-by-step audit routine:</p>
+    <ol>
+      <li><strong>Verify Entity Identifiers:</strong> Confirm the primary company name, stock ticker symbol, and ten-digit CIK number to ensure complete capture of corporate records.</li>
+      <li><strong>Review the Latest Form 10-K:</strong> Read Item 1 (Business Overview), Item 1A (Risk Factors), and Item 7 (MD&amp;A) to build a baseline understanding of operational health and legal liabilities.</li>
+      <li><strong>Scan Recent Form 10-Q Filings:</strong> Review subsequent quarterly periods to identify shifts in gross margin, accounts receivable aging, or new credit drawdowns.</li>
+      <li><strong>Monitor Real-Time 8-K Alerts:</strong> Track current report trigger events, such as executive leadership turnover (Item 5.02) or material contracts (Item 1.01).</li>
+      <li><strong>Audit Insider Buying on Form 4:</strong> Check whether corporate directors are purchasing shares with open-market capital (Code P) or executing routine tax-withholding sales.</li>
+      <li><strong>Inspect Institutional Concentration via Form 13F:</strong> Identify major mutual fund and hedge fund holders to gauge institutional ownership trends.</li>
+    </ol>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Regulatory Intelligence &amp; Public Filing Research. All rights reserved.</p>
+    <p>EdgarScout is an independent research tool and is not affiliated with, endorsed by, or sponsored by the U.S. Securities and Exchange Commission (SEC). This content is strictly for educational and informational purposes and does not constitute investment advice. Always verify filings on sec.gov.</p>
+  </footer>
+
+</body>
+</html>
